@@ -6,6 +6,7 @@ This project is an end-to-end data analysis solution designed to extract critica
 ## Project Steps
 # 1. Seting Up the Environment
 **Tools Used:** Visual Studio Code (VS Code), Python, SQL (PostgreSQL)
+
 **Objective:** Create a well-organized workspace within VS Code to streamline development and data handling.
 
 # 2. Configure Kaggle API for Dataset Access
