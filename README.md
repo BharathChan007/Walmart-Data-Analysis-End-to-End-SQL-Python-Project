@@ -4,15 +4,15 @@
 This project is an end-to-end data analysis solution designed to extract critical business insights from Walmart sales data. We utilize Python for data processing and analysis, SQL for advanced querying, and structured problem-solving techniques to solve key business questions
 ----------------------------------------------------------------------------------------------------------------------------
 ## Project Steps
-# 1. Set Up the Environment
-Tools Used: Visual Studio Code (VS Code), Python, SQL (PostgreSQL)
+# 1. Seting Up the Environment
+**Tools Used:** Visual Studio Code (VS Code), Python, SQL (PostgreSQL)
 **Objective:** Create a well-organized workspace within VS Code to streamline development and data handling.
 
 # 2. Configure Kaggle API for Dataset Access
 **API Setup:**
 To access datasets from Kaggle directly, I set up the Kaggle API by obtaining the API token (JSON file) from my Kaggle profile settings.
 
-Configuration Steps:
+**Configuration Steps:**
 Placed the kaggle.json file in the .kaggle folder.
 Used the command kaggle datasets download -d <dataset-path> to download datasets into my project folder.
 
@@ -23,10 +23,7 @@ Used the command kaggle datasets download -d <dataset-path> to download datasets
 # 4. Install Required Libraries and Load Data
 **Libraries:** Installed essential Python libraries for data manipulation and database connection:
 
-bash
-Copy code
-pip install pandas numpy sqlalchemy mysql-connector-python psycopg2
-Loading Data: Loaded the Walmart sales data into a Pandas DataFrame for preliminary analysis and transformation.
+**Loading Data:** Loaded the Walmart sales data into a Pandas DataFrame for preliminary analysis and transformation.
 
 # 5. Data Exploration
 **Goal:** Perform initial data exploration to gain an understanding of data distribution, column names, types, and identify potential issues.
@@ -36,11 +33,15 @@ Loading Data: Loaded the Walmart sales data into a Pandas DataFrame for prelimin
 # *6. Data Cleaning*
 **Steps Taken:**
 
-Remove Duplicates: Identified and removed duplicate entries to ensure accuracy in analysis.
-Handle Missing Values: Filled or removed missing values based on significance.
-Fix Data Types: Ensured consistency in data types (e.g., dates formatted as datetime, prices as float).
-Currency Formatting: Used .replace() to handle currency symbols, ensuring numeric values for analysis.
-Validation: Checked for remaining inconsistencies and verified data integrity after cleaning.
+### Remove Duplicates: Identified and removed duplicate entries to ensure accuracy in analysis.
+### Handle Missing Values: Filled or removed missing values based on significance.
+### Fix Data Types: Ensured consistency in data types (e.g., dates formatted as datetime, prices as float).
+### Currency Formatting: Used .replace() to handle currency symbols, ensuring numeric values for analysis.
+```python
+df['unit_price'] = df['unit_price'].str.replace('$', '').astype(float)
+df.head()
+```
+### Validation: Checked for remaining inconsistencies and verified data integrity after cleaning.
 
 # 7. Feature Engineering
 **Objective:** Enhance the dataset with additional metrics for more detailed analysis.
@@ -49,10 +50,21 @@ Created a new column, Total Amount, by calculating the product of unit_price and
 
 # 8. Load Data into PostgreSQL
 **Database Connections:** Established connections to PostgreSQL using psycog2 and loaded the cleaned data into each database.
+```python
+engine_psql = create_engine("postgresql+psycopg2://postgres:name@localhost:5432/walmart_db")
+try:
+    engine_psql
+    print('Connection Successfull')
+except:
+    print('Connection Failed')
+```
 
 **Table Creation:**
 
 Automated table creation and data insertion in PostgreSQL to streamline the process.
+```python
+df.to_sql(name ='walmart', con= engine_psql, if_exists='append', index=False )
+```
 **Verification:** Executed initial SQL queries to confirm that data was loaded accurately in both databases.
 
 # 9. SQL Analysis: Complex Queries and Business Insights
