@@ -19,6 +19,7 @@ Used the command kaggle datasets download -d <dataset-path> to download datasets
 
 # 3. Download Walmart Sales Data
 **Data Source**: Walmart Sales Dataset from Kaggle
+
 **Storage:** Saved the downloaded data files in a data/ folder for easy access and organization.
 
 # 4. Install Required Libraries and Load Data
